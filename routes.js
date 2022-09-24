@@ -8,13 +8,12 @@ module.exports = app => {
 
         const notes = JSON.parse(data);
 
+
         app.get('/notes', (req, res) => {
             res.sendFile(path.join(__dirname, './public/notes.html'));
         });
 
-        app.get('*', (req, res) => {
-            res.sendFile(path.join(__dirname, './public/index.html'));
-        });
+        
 
         app.get('/api/notes', (req, res) => {
             res.json(notes);
@@ -33,6 +32,10 @@ module.exports = app => {
         app.delete('/api/notes/:id', (req, res) => {
             notes.splice(req.params.id, 1);
             jsonUpdate();
+        });
+        
+        app.get('*', (req, res) => {
+            res.sendFile(path.join(__dirname, './public/index.html'));
         });
 
         function jsonUpdate() {
