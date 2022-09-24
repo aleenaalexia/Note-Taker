@@ -8,6 +8,9 @@ module.exports = app => {
 
         const notes = JSON.parse(data);
 
+        app.get('/', (req, res) => {
+            res.sendFile(path.join(__dirname, './public/index.html'));
+        });
 
         app.get('/notes', (req, res) => {
             res.sendFile(path.join(__dirname, './public/notes.html'));
